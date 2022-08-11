@@ -1,0 +1,8 @@
+#!/bin/bash
+
+domain=$(pwd | cut -d'/' -f5)
+cd ..
+GIT_DIR='.git'
+git checkout -f
+curl -s --max-time 10 -X PURGE  "http://127.0.0.1/*" -H "Host: $domain" -o /dev/null
+curl -s --max-time 10 -k -X PURGE  "https://127.0.0.1/*" -H "Host: $domain" -o /dev/null
